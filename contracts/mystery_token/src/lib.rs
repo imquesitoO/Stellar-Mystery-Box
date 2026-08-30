@@ -106,17 +106,13 @@ impl MysteryToken {
         if from_balance < amount {
             panic!("saldo insuficiente");
         }
+
         let to_balance = read_balance(&env, &to);
 
         write_balance(&env, &from, from_balance - amount);
         write_balance(&env, &to, to_balance + amount);
     }
 
-    // ╔═══════════════════════════════════════════════════════════╗
-    // ║  ⚡ RETO 2 — ACTIVA EL PODER DE TU TOKEN                    ║
-    // ║  Completa la funcion siguiendo las 🔍 PISTAS.              ║
-    // ║  Corre los tests: si pasan en verde, el poder esta activo. ║
-    // ╚═══════════════════════════════════════════════════════════╝
     pub fn transfer_with_fee(env: Env, from: Address, to: Address, amount: i128) {
         from.require_auth();
 
@@ -129,17 +125,23 @@ impl MysteryToken {
             panic!("saldo insuficiente");
         }
 
-        // 🔍 PISTA 1: calcula la comision, un 1% del monto (amount / 100)
-        // let fee = ???;
+        // Comisión del 1%
+        let fee = amount / 100;
 
-        // 🔍 PISTA 2: el monto que realmente llega es amount - fee
-        // let net = ???;
+        // Monto que realmente recibe el destinatario
+        let net = amount - fee;
 
-        // 🔍 PISTA 3: resta `amount` del balance de `from`
-        // 🔍 PISTA 4: suma `net` al balance de `to`
-        // 🔍 PISTA 5: "quema" la `fee` reduciendo el supply total (read_supply/write_supply)
+        let to_balance = read_balance(&env, &to);
 
-        panic!("TODO Reto 2: completa esta funcion siguiendo las pistas");
+        // El emisor paga el monto completo
+        write_balance(&env, &from, from_balance - amount);
+
+        // El receptor recibe el monto menos la comisión
+        write_balance(&env, &to, to_balance + net);
+
+        // Se quema la comisión reduciendo el supply total
+        let supply = read_supply(&env);
+        write_supply(&env, supply - fee);
     }
 }
 
