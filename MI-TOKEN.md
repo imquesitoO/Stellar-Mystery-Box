@@ -8,7 +8,7 @@ guardarlo con un commit es el **Commit 4**.
 - **Tema de la caja:** (ej: Fuego 🔥, Cosmos 🌌...)
 - **CONTRACT_ID**:*CANNIBO3OKY4ZLASXTZX34M33KPQJNDRRVONXFV337N274VMDE3XSPDY*
 - **Link en Stellar Expert:**
-  `https://stellar.expert/explorer/testnet/contract/<TU_CONTRACT_ID>`
+  `https://stellar.expert/explorer/testnet/contract/CANNIBO3OKY4ZLASXTZX34M33KPQJNDRRVONXFV337N274VMDE3XSPDY`
 - **A quien le mande mi caja:**
 - **Quien me mando la mia:**
 
